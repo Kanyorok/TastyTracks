@@ -8,25 +8,34 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class = "nav-item">
-            <%= link_to 'All Recipes', class: 'nav-link' %>
+            <%= link_to 'All Recipes', public_recipes_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Foods', class: 'nav-link' %>
+            <%= link_to 'Foods', foods_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'My Recipes', class: 'nav-link' %>
+            <%= link_to 'My Recipes', recipes_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Shopping List', class: 'nav-link' %>
+            <%= link_to 'Shopping List', general_shopping_lists_path, class: 'nav-link' %>
           </li>
         </ul>
         <div class="d-flex">
-          <% if user_signed_in? %>
-            <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: ['btn', 'btn-outline-success'] %>
-          <% else %>
-            <li>  <%= link_to 'Login', user_session_path, class: ['btn', 'btn-outline-success'] %></li>
-            <li>  <%= link_to 'Sign up', new_user_registration_path, class: ['btn', 'btn-outline-success'] %></li>
-          <% end %>
+          <!-- User Authentication Dropdown -->
+            <div class="btn-group ms-2">
+              <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person"></i> 
+              </button>
+              <ul class="dropdown-menu">
+                <% if user_signed_in? %>
+                  <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
+                <% else %>
+                  <li><%= link_to 'Login', user_session_path, class: 'dropdown-item' %></li>
+                  <li><%= link_to 'Sign up', new_user_registration_path, class: 'dropdown-item' %></li>
+                <% end %>
+              </ul>
+            </div>
+          <!-- End User Authentication Dropdown -->
         </div>
       </div>
     </div>
