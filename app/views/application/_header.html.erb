@@ -28,6 +28,7 @@
               </button>
               <ul class="dropdown-menu">
                 <% if user_signed_in? %>
+                  <li><%= button_to current_user.name, user_path(current_user.id), class: 'dropdown-item' %></li>
                   <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
                 <% else %>
                   <li><%= link_to 'Login', user_session_path, class: 'dropdown-item' %></li>
