@@ -41,4 +41,10 @@ class RecipeFoodsController < ApplicationController
           redirect_to @recipe, alert: 'Failed to Remove Food Item!'
         end
     end
+
+    private
+
+    def set_recipe
+        @recipe = Recipe.includes(:recipe_foods, :food_name).find(params[:recipe_id])
+    end
 end
