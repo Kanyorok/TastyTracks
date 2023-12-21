@@ -15,4 +15,30 @@ class RecipeFoodsController < ApplicationController
         render :new
       end
     end
+
+    def update
+        @recipe_food = @recipe.recipe_foods.find(params[:id])
+        @recipe_food.assign_attributes(recipe_food_params)
+    
+        @recipe_food.calculate_value
+        if @recipe_food.save
+          redirect_to @recipe, notice: 'Food updated successfully.'
+        else
+          flash.now[:alert] = 'Failed to Update the Food item!'
+          render :edit
+        end
+    end
+    
+    def edit
+        @recipe_food = @recipe.recipe_foods.find(params[:id])
+    end
+    
+    def destroy
+        @recipe_food = @recipe.recipe_foods.find(params[:id])
+        if @recipe_food.destroy
+          redirect_to @recipe, notice: 'Food removed successfully.'
+        else
+          redirect_to @recipe, alert: 'Failed to Remove Food Item!'
+        end
+    end
 end
