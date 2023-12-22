@@ -6,10 +6,6 @@ RSpec.describe 'Users', type: :request do
       get new_user_session_path
     end
 
-    it 'returns http success' do
-      expect(response).to be_successful
-    end
-
     it 'returns http status 200' do
       expect(response.status).to eq(200)
     end
