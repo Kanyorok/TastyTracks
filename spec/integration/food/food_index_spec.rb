@@ -13,10 +13,7 @@ RSpec.describe 'Food', type: :system do
   end
 
   it 'Shows the correct index view' do
-    visit new_user_session_path
-    fill_in 'Email', with: @user.email
-    fill_in 'Password', with: @user.password
-    click_button 'Log in'
+    login_user(@user)
     sleep(1)
     visit foods_path
     sleep(1)
@@ -28,10 +25,7 @@ RSpec.describe 'Food', type: :system do
 
   context 'Food Item Remove action' do
     it 'removes the item' do
-      visit new_user_session_path
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
+      login_user(@user)
       sleep(1)
       visit foods_path
       sleep(1)
@@ -43,10 +37,7 @@ RSpec.describe 'Food', type: :system do
 
   context 'Add food item action' do
     it 'redirects to Add new Food view' do
-      visit new_user_session_path
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
+      login_user(@user)
       sleep(1)
       visit foods_path
       sleep(1)
