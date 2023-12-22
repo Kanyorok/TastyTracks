@@ -53,7 +53,7 @@ RSpec.describe 'Public Recipe', type: :system do
       sleep(1)
       click_link @r1.name
       sleep(1)
-      expected_path = public_recipe_path(@r1).gsub(".", "/")
+      expected_path = public_recipe_path(@r1).gsub('.', '/')
       visit expected_path
       sleep(1)
       expect(current_path).to eq(expected_path)
