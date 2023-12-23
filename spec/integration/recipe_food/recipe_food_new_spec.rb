@@ -14,11 +14,7 @@ RSpec.describe 'Recipe Foods new', type: :system do
   end
 
   it 'Adding new Ingredient' do
-    visit new_user_session_path
-    fill_in 'Email', with: @user.email
-    fill_in 'Password', with: @user.password
-    click_button 'Log in'
-    sleep(1)
+    login_user(@user)
     visit recipes_path
 
     visit foods_path

@@ -17,11 +17,7 @@ RSpec.describe 'Recipe Details', type: :system do
   end
 
   it 'shows the correct view of the recipe' do
-    visit new_user_session_path
-    fill_in 'Email', with: @user.email
-    fill_in 'Password', with: @user.password
-    click_button 'Log in'
-    sleep(1)
+    login_user(@user)
     visit recipe_path(@recipe)
     sleep(1)
     expect(page).to have_content('User one Recipe')
@@ -35,11 +31,7 @@ RSpec.describe 'Recipe Details', type: :system do
 
   context 'Public, Private Toggle action' do
     it 'changes the visibility of the recipe' do
-      visit new_user_session_path
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
-      sleep(1)
+      login_user(@user)
       visit recipe_path(@recipe)
       sleep(1)
       find('.toggle-button-container').click
@@ -50,11 +42,7 @@ RSpec.describe 'Recipe Details', type: :system do
 
   context 'Modify action from the recipe foods table' do
     it 'redirects to modify path and updates the item' do
-      visit new_user_session_path
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
-      sleep(1)
+      login_user(@user)
       visit recipe_path(@recipe)
       sleep(1)
       click_link 'Modify'
@@ -65,11 +53,7 @@ RSpec.describe 'Recipe Details', type: :system do
 
   context 'Delete action fromt he table' do
     it 'Removes the food ingredient' do
-      visit new_user_session_path
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
-      sleep(1)
+      login_user(@user)
       visit recipe_path(@recipe)
       sleep(1)
       click_button 'Delete'
@@ -80,11 +64,7 @@ RSpec.describe 'Recipe Details', type: :system do
 
   context 'Generate Shopping List action' do
     it 'redirects to shopping list path' do
-      visit new_user_session_path
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
-      sleep(1)
+      login_user(@user)
       visit recipe_path(@recipe)
       sleep(1)
       click_link('Generate General Shopping List')
@@ -95,11 +75,7 @@ RSpec.describe 'Recipe Details', type: :system do
 
   context 'Add Ingredients action' do
     it 'redirects to Add new Ingredients path' do
-      visit new_user_session_path
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
-      sleep(1)
+      login_user(@user)
       visit recipe_path(@recipe)
       sleep(1)
       click_link('Add Ingredient')

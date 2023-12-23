@@ -14,11 +14,7 @@ RSpec.describe 'New Food', type: :system do
 
   context 'Adds new Food item' do
     it 'Instance to the table' do
-      visit new_user_session_path
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
-      sleep(1)
+      login_user(@user)
       visit new_food_path
       sleep(1)
       fill_in 'Name', with: @f1.name

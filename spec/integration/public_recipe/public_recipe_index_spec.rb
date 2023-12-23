@@ -23,11 +23,7 @@ RSpec.describe 'Public Recipe', type: :system do
   end
 
   it 'Shows the public recipes index view' do
-    visit new_user_session_path
-    fill_in 'Email', with: @user.email
-    fill_in 'Password', with: @user.password
-    click_button 'Log in'
-    sleep(1)
+    login_user(@user)
     visit public_recipes_path
     sleep(1)
     expect(page).to have_content('Public Recipes by Users')
@@ -44,11 +40,7 @@ RSpec.describe 'Public Recipe', type: :system do
 
   context 'Public Recipe link action' do
     it 'redirects public recipe show view' do
-      visit new_user_session_path
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
-      sleep(1)
+      login_user(@user)
       visit public_recipes_path
       sleep(1)
       click_link @r1.name

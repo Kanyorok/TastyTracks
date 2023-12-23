@@ -16,11 +16,7 @@ RSpec.describe 'Recipe Foods edit', type: :system do
 
   context 'should render index view' do
     it 'Modifying the Ingredient' do
-      visit new_user_session_path
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-      click_button 'Log in'
-      sleep(1)
+      login_user(@user)
 
       visit edit_recipe_recipe_food_path(@r1, @rf1)
 
