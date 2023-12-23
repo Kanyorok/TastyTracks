@@ -53,8 +53,11 @@ RSpec.describe RecipesController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns the requested recipe to @recipe' do
-      get :edit, params: { id: @recipe.id }
-      expect(assigns(:recipe)).to eq(@recipe)
+      recipe = Recipe.new(name: 'Test Recipe', description: 'Test Description', cooking_time: 1,
+                        preparation_time: 1, public: true, user: @user)
+    recipe.save
+    get :edit, params: { id: recipe.id }
+    expect(assigns(:recipe)).to eq(recipe)
     end
   end
 
