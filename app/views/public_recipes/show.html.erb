@@ -14,11 +14,15 @@
       </tr>
     </thead>
     <tbody>
+    <% total_price = 0 %>
       <% @recipe.recipe_foods.each do |recipe_food| %>
         <tr class="tableheader">
           <td class="tablecol"><%= recipe_food.food_name.name %></td>
           <td class="tablecol"><%= recipe_food.quantity %><%= recipe_food.food_name.measurement_unit %></td>
-          <td class="tablecol">$<%= recipe_food.value %></td>
+          <td class="tablecol">  
+            <% total_price += recipe_food.food_name.price %>
+            $<%= total_price %>
+          </td>
         </tr>
       <% end %>
     </tbody>

@@ -56,6 +56,7 @@
       <tr class="tableheader">
         <th class="tablecol sortable">Foods</th>
         <th class="tablecol sortable">Quantity</th>
+        <th class="tablecol sortable">Value</th>
         <th class="tablecol sortable">Actions</th>
       </tr>
     </thead>
@@ -66,6 +67,7 @@
         <td class="tablecol">
           <%= recipe_food.quantity %><%= recipe_food.food_name.measurement_unit %>
         </td>
+        <td class="tablecol">$<%= recipe_food.food_name.price %></td>
         <td class="tablecol modify-delete-actions">
           <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe,
           recipe_food), class:'btn btn-secondary' %>

@@ -44,15 +44,6 @@ class RecipeFoodsController < ApplicationController
     redirect_to recipe_path(@recipe_foods.recipe_name)
   end
 
-  # def destroy
-  #   @recipe_food = @recipe.recipe_foods.find(params[:id])
-  #   if @recipe_food.destroy
-  #     redirect_to @recipe, notice: 'Food removed successfully.'
-  #   else
-  #     redirect_to @recipe, alert: 'Failed to Remove Food Item!'
-  #   end
-  # end
-
   def recipe_foods_params
     params.require(:recipe_food).permit(:food_id, :quantity)
   end
