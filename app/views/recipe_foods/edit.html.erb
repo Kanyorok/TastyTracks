@@ -1,0 +1,22 @@
+<div class="recipe-food-top">
+  <div class="recipe-food-inner">
+    <h1>Update Food Quantity</h1>
+    <%= form_with model: @recipe_food, url: {action: :update} do |f| %>
+      <div class="f-post_view">
+        <div class="form-label">
+          <label class="notice_edit">* If food is not in option please add it in the Foods Page</label><br>
+          <%= f.collection_select :food_id, @foods, :id, :name, class: "input-fiel" %>
+            <div class="form-label">
+              <%= f.label :quantity, class: "form-label" %><br>
+                <%= f.number_field :quantity, class: "input" , min: 1, required: true %>
+            </div>
+            <div class="btn-container">
+              <p>
+                <%= f.submit "Update Food" , class: "btn btn-primary" %>
+              </p>
+            </div>
+        </div>
+    <% end %>
+      </div>
+  </div>
+</div>
