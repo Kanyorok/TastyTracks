@@ -6,13 +6,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
-
-    if @recipe.public?
-      render :show
-    else
-      redirect_to root_path, alert: "The recipe is private."
-    end
+    @recipe = Recipe.includes(:user, :food_name).find(params[:id])
   end
 
   def new
