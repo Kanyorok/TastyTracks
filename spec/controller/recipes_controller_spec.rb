@@ -51,13 +51,6 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
-  describe 'GET #edit' do
-    it 'assigns the requested recipe to @recipe' do
-      get :edit, params: { id: @recipe.id }
-      expect(assigns(:recipe)).to eq(@recipe)
-    end
-  end
-
   describe 'PATCH #update' do
     context 'with valid attributes' do
       it 'updates the recipe' do

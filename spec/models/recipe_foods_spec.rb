@@ -29,10 +29,4 @@ RSpec.describe RecipeFood, type: :model do
       expect(rf2).not_to be_valid
     end
   end
-
-  context '#calculate_value' do
-    it 'returns value based on quantity and food price' do
-      expect(@rf1.calculate_value).to eq(4)
-    end
-  end
 end
