@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @recipes = current_user.recipes.includes(:user)
+    @recipes = current_user.recipes.includes(:food_name)
   end
 
   def show

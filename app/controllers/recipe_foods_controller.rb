@@ -1,54 +1,49 @@
 class RecipeFoodsController < ApplicationController
-  before_action :set_recipe
-
   def new
-    @recipe_food = @recipe.recipe_foods.new
+    @user = current_user
+    @recipe_food = RecipeFood.new
+    @recipe = Recipe.find(params[:recipe_id])
+    @foods = @user.foods
   end
 
   def create
-    @recipe_food = @recipe.recipe_foods.find_or_initialize_by(food_id: recipe_food_params[:food_id])
-    @recipe_food.quantity = recipe_food_params[:quantity] # Set quantity
-    @recipe_food.calculate_value
-    if @recipe_food.save
-      redirect_to @recipe, notice: 'Food added successfully.'
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe_foods = RecipeFood.new(recipe_foods_params)
+    @recipe_foods.recipe_name = @recipe
+    if @recipe_foods.save
+      flash[:notice] = 'Recipe item was created successfully'
+      redirect_to recipe_path(@recipe)
     else
       render :new
     end
   end
 
-  def update
-    @recipe_food = @recipe.recipe_foods.find(params[:id])
-    @recipe_food.assign_attributes(recipe_food_params)
+  def edit
+    @user = current_user
+    @foods = @user.foods
+    @recipe_food = RecipeFood.find(params[:id])
+  end
 
-    @recipe_food.calculate_value
-    if @recipe_food.save
-      redirect_to @recipe, notice: 'Food updated successfully.'
+  def update
+    @recipes = Recipe.find(params[:recipe_id])
+    @recipe_foods = RecipeFood.find(params[:id])
+    @recipe = @recipe_foods.update(recipe_foods_params)
+    if @recipe
+      flash[:notice] = 'Recipe item was updated successfully'
+      redirect_to recipe_path(@recipes)
     else
-      flash.now[:alert] = 'Failed to Update the Food item!'
       render :edit
     end
   end
 
-  def edit
-    @recipe_food = @recipe.recipe_foods.find(params[:id])
-  end
-
   def destroy
-    @recipe_food = @recipe.recipe_foods.find(params[:id])
-    if @recipe_food.destroy
-      redirect_to @recipe, notice: 'Food removed successfully.'
-    else
-      redirect_to @recipe, alert: 'Failed to Remove Food Item!'
-    end
+    @recipe_foods = RecipeFood.find(params[:id])
+    @recipe_foods.destroy
+    flash[:notice] = 'Recipe Item was successfully deleted.'
+    redirect_to recipe_path(@recipe_foods.recipe_name)
   end
 
-  private
-
-  def recipe_food_params
-    params.require(:recipe_food).permit(:food_id, :quantity, :value)
-  end
-
-  def set_recipe
-    @recipe = Recipe.includes(:recipe_foods, :food_name).find(params[:recipe_id])
+  def recipe_foods_params
+    params.require(:recipe_food).permit(:food_id, :quantity)
   end
 end

@@ -198,7 +198,6 @@ body {
     border-top: 1px solid #efeff3;
     border-left: none;
     vertical-align: top;
-    margin-left: 15px;
   }
 }
 
@@ -547,4 +546,57 @@ input#add-recipe-action {
   font-size: 1.2rem;
   font-weight: 700;
   margin: 4% 0;
+}
+
+.recipe-food-top {
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.recipe-food-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.page-title {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  margin-bottom: 15px;
+}
+
+.notice_edit {
+  color: #888;
+}
+
+.input-field,
+.input,
+.btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.btn-container {
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #95a5a6;
+  color: #fff;
+  border: none;
+}
+
+.btn:hover {
+  cursor: pointer;
 }

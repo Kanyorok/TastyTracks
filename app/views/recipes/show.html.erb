@@ -37,8 +37,10 @@
     <div class="container">
       <div class="row recipe-ingredients-container">
         <div class="col-md-6 shop-items-container">
-          <%= link_to 'Generate General Shopping List',
-          general_shopping_lists_path, class:'btn btn-secondary' %>
+          <% if can? :read, @recipe %>
+            <%= link_to 'Generate General Shopping List',
+            general_shopping_lists_path(recipe_id: @recipe.id), class:'btn btn-secondary' %>
+          <% end %>
         </div>
         <div class="col-md-6 shop-items-container">
           <%= link_to 'Add Ingredients', new_recipe_recipe_food_path(@recipe),
@@ -65,13 +67,11 @@
         <td class="tablecol">
           <%= recipe_food.quantity %><%= recipe_food.food_name.measurement_unit %>
         </td>
-        <td class="tablecol">$<%= recipe_food.value %></td>
+        <td class="tablecol">$<%= recipe_food.food_name.price %></td>
         <td class="tablecol modify-delete-actions">
           <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe,
           recipe_food), class:'btn btn-secondary' %>
-          <%= button_to 'Remove',
-          recipe_recipe_food_path(@recipe, recipe_food), class:'btn
-          btn-secondary', method: :delete %>
+          <%= button_to "Delete", delete_recipe_food_path(@recipe, recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
         </td>
       </tr>
       <% end %>
