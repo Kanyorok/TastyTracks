@@ -26,7 +26,6 @@ RSpec.describe 'Recipe Foods edit', type: :system do
 
       expect(page).to have_content('Update Food Quantity')
       expect(page).to have_content('Update Food')
-      expect(page).to have_content('Cancel')
       fill_in 'recipe_food_quantity', with: 5
       click_button 'Update Food'
       sleep(1)

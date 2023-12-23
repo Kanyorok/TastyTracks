@@ -72,7 +72,7 @@ RSpec.describe 'Recipe Details', type: :system do
       sleep(1)
       visit recipe_path(@recipe)
       sleep(1)
-      click_button 'Remove'
+      click_button 'Delete'
       sleep(1)
       expect(@recipe.recipe_foods.count).to eq 0
     end
