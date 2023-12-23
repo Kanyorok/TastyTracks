@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe RecipesController, type: :controller do
   before :each do
-    @user = User.create!(name: 'Test User', email: 'test@example.com', password: 'password', password_confirmation: 'password')
+    @user = User.create!(name: 'Test User', email: 'test@example.com', password: 'password',
+                         password_confirmation: 'password')
     sign_in @user
-    @recipe = @user.recipes.create!(name: 'Test Recipe', description: 'Test Description', cooking_time: 1, preparation_time: 1, public: true)
+    @recipe = @user.recipes.create!(name: 'Test Recipe', description: 'Test Description', cooking_time: 1,
+                                    preparation_time: 1, public: true)
   end
 
   describe 'GET #index' do
@@ -31,17 +33,20 @@ RSpec.describe RecipesController, type: :controller do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new recipe' do
-        expect {
-          post :create, params: { recipe: { name: 'New Recipe', description: 'New Description', cooking_time: 1, preparation_time: 1, public: true } }
-        }.to change(Recipe, :count).by(1)
+        expect do
+          post :create,
+               params: { recipe: { name: 'New Recipe', description: 'New Description',
+                                   cooking_time: 1, preparation_time: 1, public: true } }
+        end.to change(Recipe, :count).by(1)
       end
     end
 
     context 'with invalid attributes' do
       it 'does not save the new recipe' do
-        expect {
-          post :create, params: { recipe: { name: '', description: '', cooking_time: '', preparation_time: '', public: '' } }
-        }.to_not change(Recipe, :count)
+        expect do
+          post :create,
+               params: { recipe: { name: '', description: '', cooking_time: '', preparation_time: '', public: '' } }
+        end.to_not change(Recipe, :count)
       end
     end
   end
@@ -73,9 +78,9 @@ RSpec.describe RecipesController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'deletes the recipe' do
-      expect {
+      expect do
         delete :destroy, params: { id: @recipe.id }
-      }.to change(Recipe, :count).by(-1)
+      end.to change(Recipe, :count).by(-1)
     end
   end
 end
