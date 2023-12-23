@@ -2,11 +2,17 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @recipes = current_user.recipes
+    @recipes = current_user.recipes.includes(:food_name)
   end
 
   def show
     @recipe = Recipe.find(params[:id])
+
+    if @recipe.public?
+      render :show
+    else
+      redirect_to root_path, alert: "The recipe is private."
+    end
   end
 
   def new
