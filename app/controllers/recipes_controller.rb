@@ -42,6 +42,10 @@ class RecipesController < ApplicationController
     end
   end
 
+  def edit
+    @recipe = current_user.recipes.find(params[:id])
+  end
+
   private
 
   def recipe_params
