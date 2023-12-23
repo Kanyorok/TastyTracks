@@ -16,6 +16,6 @@ class Food < ApplicationRecord
                          FROM recipe_foods GROUP BY food_id) as subquery
                ON foods.id = subquery.food_id"
     )
-    .select('foods.name, subquery.total_quantity, subquery.total_value')
+      .select('foods.name, subquery.total_quantity, subquery.total_value')
   end
 end
